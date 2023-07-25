@@ -16,7 +16,7 @@ AS_FILES = $(wildcard sys/asm/*.s)
 
 # Compiler options
 CFLAGS =
-CFLAGS += -O1
+CFLAGS += -O2
 CFLAGS += -g
 CFLAGS += -mthumb -mthumb-interwork
 CFLAGS += -Wall -Wextra -Wno-unused-parameter -Wpointer-arith
@@ -30,7 +30,7 @@ LDSCRIPT = sys/ml67q4051.ld
 
 # Linker options
 LD_FLAGS =
-#~ LDFLAGS +=  -Wl,--gc-sections
+#LDFLAGS +=  -Wl,--gc-sections
 #~ LDFLAGS += -Wl,-s
 LDFLAGS += -Wl,-Map,obj/$(TARGET).map
 LDFLAGS += -nostartfiles
@@ -38,8 +38,7 @@ LDFLAGS += -mcpu=arm7tdmi -T$(LDSCRIPT)
 LDFLAGS += -Wa,-adhln=obj/$(TARGET).lst
 
 # Additional libraries
-LIBS = -lc_nano -lm
-#-lc_nano -lnosys
+LIBS = -lc_nano -lm -lnosys
 
 # Compiler toolchain
 CC = arm-none-eabi-gcc
